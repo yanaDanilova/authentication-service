@@ -23,10 +23,8 @@ public class AuthenticationService {
     }
 
     public JwtTokenResponse register(Credentials credentials) {
-        User user = new User(credentials.getUsername(), passwordEncoder.encode(credentials.getPassword()));
-        List<String> roles = new ArrayList<>();
-        roles.add("user");
-        user.setRoles(roles);
+        User user = new User(credentials.getUsername(), passwordEncoder.encode(credentials.getPassword()),credentials.getRoles());
+        user.setRoles(credentials.getRoles());
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return new JwtTokenResponse(jwtToken);
