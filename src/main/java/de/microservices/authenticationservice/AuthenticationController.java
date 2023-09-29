@@ -14,10 +14,28 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+/*
+    {
+        "username": "admin",
+            "password": "200",
+            "roles": [
+        "ROLE_ADMIN"
+  ]
+    }
+
+    {
+        "username": "user",
+            "password": "100",
+            "roles": [
+        "ROLE_USER"
+  ]
+    }
+*/
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Credentials credentials) {
+    public ResponseEntity<?> registerUser(@RequestBody Credentials credentials) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authenticationService.register(credentials));
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody Credentials credentials) {

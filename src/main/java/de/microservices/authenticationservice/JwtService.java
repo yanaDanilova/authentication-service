@@ -1,5 +1,6 @@
 package de.microservices.authenticationservice;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -42,6 +43,7 @@ public class JwtService {
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
         for (GrantedAuthority authority : authorities) {
+
             roles.add(authority.getAuthority());
         }
 
@@ -52,5 +54,7 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+
 
 }
